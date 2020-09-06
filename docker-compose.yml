@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  # Manim installed via pip
+  manim:
+    build: .
+    entrypoint:
+      - manim
+    image: manim-ce:pip
+    volumes:
+      - .:/manim
+    working_dir: /manim
+  # Manim installed via the repo on github
+  manim-latest:
+    build:
+      context: .
+      dockerfile: Dockerfile.github
+    entrypoint:
+      - manim
+    image: manim-ce:latest
+    volumes:
+      - .:/manim
+    working_dir: /manim
